@@ -17,10 +17,10 @@ export class ImageZoom implements OnInit, OnDestroy, OnChanges {
     @Input() lensBorder: number = 2;
     @Input() delay: number = 100;
     @Input() minZoomLevel: number = .2;
-    @Input() zoomLevel: number;
+    @Input() zoomLevel: number = 1
 
     @Input()
-    private set maxZoomLevel(maxZoomLevel: number) {
+    set maxZoomLevel(maxZoomLevel: number) {
         this._maxZoomLevel = maxZoomLevel;
         this._autoCalculateZoom = false;
     }
@@ -116,7 +116,8 @@ export class ImageZoom implements OnInit, OnDestroy, OnChanges {
                     this._maxZoomLevel = this._zoomedImageWidth / this.lensWidth;
                 }
             }
-            if(!this.zoomLevel)
+
+            if(this.zoomLevel !== 1)
             {
                 this.zoomLevel = (this._maxZoomLevel / 1.5);
             }
